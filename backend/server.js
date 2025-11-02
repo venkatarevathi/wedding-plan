@@ -3,7 +3,6 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 const helmet = require('helmet');
 const morgan = require('morgan');
-require('dotenv').config();
 
 const authRoutes = require('./src/routes/auth');
 const contactRoutes = require('./src/routes/contact');
@@ -12,16 +11,13 @@ const bookingRoutes = require('./src/routes/booking');
 const app = express();
 const PORT = process.env.PORT || 10000;
 
-// Verify environment variables
-if (!process.env.MONGODB_URI) {
-  console.error('❌ MONGODB_URI is not defined in environment variables');
-  process.exit(1);
-}
+// MongoDB Connection with direct credentials
+const MONGODB_URI = 'mongodb+srv://revathinelakurthi:revathi19@wedding-plan.y64yexh.mongodb.net/wedding-planner?retryWrites=true&w=majority';
 
 // MongoDB Connection
 const connectDB = async () => {
   try {
-    await mongoose.connect(process.env.MONGODB_URI, {
+    await mongoose.connect(MONGODB_URI, {
       useNewUrlParser: true,
       useUnifiedTopology: true,
       retryWrites: true,

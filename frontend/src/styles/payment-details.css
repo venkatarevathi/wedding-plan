@@ -1,0 +1,286 @@
+.container {
+  max-width: 1200px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+}
+
+.booking-success {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.success-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.success-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 80px;
+  height: 80px;
+  background: var(--success);
+  border-radius: 50%;
+  margin: 1rem 0;
+}
+
+.checkmark {
+  color: white;
+  font-size: 2.5rem;
+}
+
+/* Receipt card styling */
+.receipt-card {
+  background: var(--white);
+  border-radius: 15px;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.receipt-card h3 {
+  color: var(--primary);
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* Package details styling */
+.package-info {
+  margin-top: 1rem;
+}
+
+.selected-package h4 {
+  color: var(--primary);
+  margin-bottom: 0.5rem;
+}
+
+.package-description {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  margin-bottom: 1rem;
+}
+
+.additional-services h4 {
+  margin-bottom: 0.5rem;
+}
+
+.services-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.service-tag {
+  background: var(--accent-light);
+  color: var(--accent);
+  padding: 0.25rem 0.75rem;
+  border-radius: 15px;
+  font-size: 0.85rem;
+}
+
+.no-services {
+  color: var(--text-secondary);
+  font-style: italic;
+  font-size: 0.9rem;
+}
+
+/* Theme and Services Details styling */
+.detail-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.detail-item {
+  display: flex;
+  flex-direction: column;
+}
+
+.detail-item.full-width {
+  grid-column: 1 / -1;
+}
+
+.detail-item .label {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  margin-bottom: 0.25rem;
+}
+
+.detail-item .value {
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
+.special-requirements {
+  font-style: italic;
+  white-space: pre-wrap;
+}
+
+/* Service sections styling */
+.service-section {
+  margin-top: 1.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--border-color);
+}
+
+.service-section:first-child {
+  margin-top: 1rem;
+  padding-top: 0;
+  border-top: none;
+}
+
+.service-section h4 {
+  color: var(--primary);
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* Tags styling */
+.tags-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.photo-shoot-tag,
+.decor-tag {
+  background: var(--accent-light);
+  color: var(--accent);
+  padding: 0.25rem 0.75rem;
+  border-radius: 15px;
+  font-size: 0.85rem;
+  display: inline-block;
+}
+
+/* Payment details styling */
+.payment-info {
+  margin-top: 1rem;
+}
+
+.transaction-details {
+  margin-bottom: 1.5rem;
+}
+
+.detail-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.75rem;
+}
+
+.detail-row .label {
+  color: var(--text-secondary);
+}
+
+.detail-row .value {
+  font-weight: 500;
+}
+
+.detail-row .highlight {
+  color: var(--primary);
+  font-weight: 600;
+}
+
+.status-badge {
+  color: var(--success);
+  font-weight: 500;
+}
+
+.amount-details {
+  border-top: 1px solid var(--border-color);
+  padding-top: 1rem;
+}
+
+.amount-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+}
+
+.amount-row.grand-total {
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border-color);
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--primary);
+}
+
+/* Footer styling */
+.footer-note {
+  text-align: center;
+  color: var(--text-secondary);
+}
+
+.footer-note p {
+  margin: 0.5rem 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+/* Action buttons styling */
+.action-buttons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  margin-top: 2rem;
+}
+
+.print-btn,
+.home-btn {
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.print-btn {
+  background-color: var(--primary);
+  color: white;
+  border: none;
+}
+
+.print-btn:hover {
+  background-color: var(--primary-dark);
+}
+
+.home-btn {
+  background-color: var(--accent-light);
+  color: var(--accent);
+  border: 1px solid var(--accent);
+}
+
+.home-btn:hover {
+  background-color: var(--accent);
+  color: white;
+}
+
+/* Responsive styling */
+@media (max-width: 768px) {
+  .detail-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .action-buttons {
+    flex-direction: column;
+  }
+
+  .print-btn,
+  .home-btn {
+    width: 100%;
+    justify-content: center;
+  }
+}

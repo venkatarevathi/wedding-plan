@@ -8,10 +8,10 @@ services:
     startCommand: cd backend && node server.js
     envVars:
       - key: MONGODB_URI
-        value: mongodb+srv://revathinelakurthi:revathi19@wedding-plan.umvwmsl.mongodb.net/wedding-planner?retryWrites=true&w=majority
+        value: "mongodb+srv://revathinelakurthi:revathi19@wedding-plan.y64yexh.mongodb.net/wedding-planner?retryWrites=true&w=majority"
       - key: JWT_SECRET
-        value: a8f5f167f44f4964e6c998dee827110c8b2e4a7d3f9c1b5e8a2d6f4c9e7b3a1f
+        value: "a8f5f167f44f4964e6c998dee827110c8b2e4a7d3f9c1b5e8a2d6f4c9e7b3a1f"
       - key: NODE_ENV
-        value: production
+        value: "production"
       - key: PORT
-        value: 10000
+        value: "10000"

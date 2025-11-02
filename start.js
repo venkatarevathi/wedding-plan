@@ -1,3 +1,3 @@
-const path = require('path');
-require('dotenv').config({ path: path.join(__dirname, 'backend', '.env') });
-require('./backend/server.js');
+require('dotenv').config();
+require('./backend/server.js'); const backendPath = path.join(__dirname, 'backend');
+require(path.join(backendPath, 'server.js'));

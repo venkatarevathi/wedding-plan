@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "concurrently \"npm run backend:dev\" \"npm run frontend:dev\"",
-    "start": "concurrently \"npm run backend:start\" \"npm run frontend:start\"",
+    "start": "node start.js",
     "backend:dev": "cd backend && npm run dev",
     "backend:start": "cd backend && npm start",
     "frontend:dev": "cd frontend && npm run dev",
@@ -14,7 +14,14 @@
     "build": "cd frontend && npm run build",
     "clean": "rimraf backend/node_modules frontend/node_modules node_modules"
   },
-  "keywords": ["wedding", "planner", "react", "nodejs", "mongodb", "fullstack"],
+  "keywords": [
+    "wedding",
+    "planner",
+    "react",
+    "nodejs",
+    "mongodb",
+    "fullstack"
+  ],
   "author": "Team 1",
   "license": "MIT",
   "devDependencies": {

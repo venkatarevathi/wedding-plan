@@ -15,12 +15,3 @@ services:
         value: "production"
       - key: PORT
         value: "10000"
-    envVars:
-      - key: NODE_ENV
-        value: production
-      - key: PORT
-        value: "3000"
-      - key: MONGODB_URI
-        sync: false
-      - key: JWT_SECRET
-        sync: false

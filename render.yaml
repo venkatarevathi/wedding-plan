@@ -2,8 +2,10 @@ services:
   - type: web
     name: wedding-planner-backend
     env: node
-    buildCommand: cd backend && npm install
-    startCommand: cd backend && node server.js
+    buildCommand: |
+      npm install
+      cd backend && npm install
+    startCommand: node start.js
     envVars:
       - key: PORT
         value: 10000
@@ -13,3 +15,17 @@ services:
         generateValue: true
       - key: NODE_ENV
         value: production
+    routes:
+      - type: rewrite
+        source: /api/*
+        destination: /*
+
+  - type: web
+    name: wedding-planner-frontend
+    env: static
+    buildCommand: cd frontend && npm install && npm run build
+    staticPublishPath: ./frontend/dist
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html

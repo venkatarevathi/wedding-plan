@@ -80,6 +80,9 @@ app.use((err, req, res, next) => {
 app.use((req, res) => {
   res.status(404).json({ error: 'Route not found' });
 });
+app.get("/", (req, res) => {
+  res.send("Wedding Planner API is running successfully 🎉");
+});
 
 // Start server
 app.listen(PORT, () => {

@@ -17,8 +17,15 @@ if (!process.env.JWT_SECRET) {
   console.warn('⚠️  JWT_SECRET is not set in environment variables. JWT operations may fail.');
 }
 
-// MongoDB Connection with direct credentials
-const MONGODB_URI = 'mongodb+srv://revathinelakurthi:revathi19@wedding-plan.y64yexh.mongodb.net/wedding-planner?retryWrites=true&w=majority';
+// MongoDB Connection - use environment variable for credentials
+// IMPORTANT: Set MONGODB_URI in your environment or Render/hosting provider secrets.
+const MONGODB_URI = process.env.MONGODB_URI;
+
+if (!MONGODB_URI) {
+  console.error('❌ MONGODB_URI is not set. Please set the MONGODB_URI environment variable.');
+  // Exit early to avoid running without a database in production.
+  process.exit(1);
+}
 
 // MongoDB Connection
 const connectDB = async () => {

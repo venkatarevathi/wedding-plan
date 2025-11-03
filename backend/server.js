@@ -21,14 +21,22 @@ if (!process.env.JWT_SECRET) {
 // IMPORTANT: Set MONGODB_URI in your environment or Render/hosting provider secrets.
 const MONGODB_URI = process.env.MONGODB_URI;
 
-if (!MONGODB_URI) {
-  console.error('❌ MONGODB_URI is not set. Please set the MONGODB_URI environment variable.');
-  // Exit early to avoid running without a database in production.
-  process.exit(1);
-}
-
 // MongoDB Connection
 const connectDB = async () => {
+  if (!MONGODB_URI) {
+    const isProd = process.env.NODE_ENV === 'production';
+    const message = 'MONGODB_URI is not set. Please set the MONGODB_URI environment variable.';
+    if (isProd) {
+      console.error('❌', message);
+      // In production we want to fail fast to avoid running without a DB.
+      process.exit(1);
+    } else {
+      // In development, allow the server to start without a DB for frontend work.
+      console.warn('⚠️  ' + message + ' Starting server in dev mode without DB connection.');
+      return;
+    }
+  }
+
   try {
     await mongoose.connect(MONGODB_URI, {
       useNewUrlParser: true,
@@ -41,10 +49,16 @@ const connectDB = async () => {
     console.log('✅ Connected to MongoDB Atlas');
   } catch (err) {
     console.error('❌ MongoDB connection error:', err);
-    process.exit(1);
+    // If connection fails in production, exit. In dev, continue but warn.
+    if (process.env.NODE_ENV === 'production') {
+      process.exit(1);
+    } else {
+      console.warn('⚠️  Failed to connect to MongoDB in development; continuing without DB.');
+    }
   }
 };
 
+// Attempt to connect (will not exit in dev if MONGODB_URI missing)
 connectDB();
 
 // Middleware

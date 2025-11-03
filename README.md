@@ -77,7 +77,7 @@ A complete responsive wedding planner website built with React frontend and Node
 ### 1. Clone the Repository
 ```bash
 git clone <your-repo-url>
-cd FSD_Assignment-5-main
+cd wedding-planner
 ```
 
 ### 2. Set Up MongoDB Atlas
@@ -88,32 +88,42 @@ cd FSD_Assignment-5-main
 5. Whitelist your IP address (or use 0.0.0.0/0 for development)
 
 ### 3. Backend Setup
-```bash
-cd server
+
+This repository places the backend in the `backend/` folder. Install dependencies and create an env file:
+
+```powershell
+cd backend
 npm install
+
+# Copy example env (do NOT commit .env)
+copy .env.example .env
+
+# Edit backend/.env and set MONGODB_URI and JWT_SECRET for production
 ```
 
-Create a `.env` file in the server directory:
-```env
-PORT=3000
-MONGODB_URI=mongodb+srv://username:password@cluster0.xxxxx.mongodb.net/wedding-planner?retryWrites=true&w=majority
+Minimal `.env` entries (example):
+```
+MONGODB_URI=mongodb+srv://<user>:<password>@cluster0.xxxxx.mongodb.net/<dbname>?retryWrites=true&w=majority
 JWT_SECRET=your-super-secret-jwt-key-change-in-production
+PORT=10000
 NODE_ENV=development
 ```
 
-Start the backend server:
-```bash
+Start the backend server (development):
+
+```powershell
 npm run dev
 ```
 
-### 4. Frontend Setup
-```bash
-cd ../client
-npm install
-```
+Note: The server will fail-fast (exit) when `MONGODB_URI` is missing only in production (`NODE_ENV=production`). In development (`NODE_ENV=development`) the server will start and log a warning when no DB is configured — this makes it easier to develop the frontend without a live DB.
 
-Start the frontend development server:
-```bash
+### 4. Frontend Setup
+
+The frontend lives in `frontend/`. Install and run:
+
+```powershell
+cd frontend
+npm install
 npm run dev
 ```
 

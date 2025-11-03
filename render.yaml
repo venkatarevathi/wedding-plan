@@ -1,0 +1,20 @@
+services:
+  - type: web
+    name: wedding-planner-backend
+    env: node
+    plan: free
+    repo: https://github.com/venkatarevathi/wedding-planner.git
+    branch: main
+    buildCommand: cd backend && npm ci
+    startCommand: cd backend && npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+
+  - type: static_site
+    name: wedding-planner-frontend
+    plan: free
+    repo: https://github.com/venkatarevathi/wedding-planner.git
+    branch: main
+    buildCommand: cd frontend && npm ci && npm run build
+    staticPublishPath: frontend/dist

@@ -79,7 +79,7 @@ app.use((err, req, res, next) => {
 // 404 handler - catch all routes that haven't been matched
 app.use((req, res) => {
   res.status(404).json({ error: 'Route not found' });
-});app.get("/", (req, res) => {
+}); app.get("/", (req, res) => {
   res.send("Wedding Planner API is running successfully 🎉");
 });
 

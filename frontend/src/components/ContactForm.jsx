@@ -12,6 +12,7 @@ const ContactForm = () => {
   })
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [responseMessage, setResponseMessage] = useState('')
+  const [responseType, setResponseType] = useState('') // 'success' | 'error' | ''
 
   const handleChange = (e) => {
     setFormData({
@@ -24,11 +25,31 @@ const ContactForm = () => {
     e.preventDefault()
     setIsSubmitting(true)
 
+    // Client-side validation to avoid backend 400
+    const validationErrors = []
+    if (!formData.name || formData.name.trim().length < 2) validationErrors.push('Name must be at least 2 characters')
+    if (!formData.email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) validationErrors.push('Valid email is required')
+    if (!formData.number || formData.number.trim().replace(/\D/g, '').length < 10) validationErrors.push('Valid phone number is required')
+    if (!formData.subject || formData.subject.trim().length < 3) validationErrors.push('Subject must be at least 3 characters')
+    if (!formData.message || formData.message.trim().length < 10) validationErrors.push('Message must be at least 10 characters')
+
+    if (validationErrors.length) {
+      const joined = validationErrors.join('; ')
+      toast.error(joined)
+      setResponseType('error')
+      setResponseMessage(joined)
+      setIsSubmitting(false)
+      return
+    }
+
     try {
       const response = await axios.post('/api/contact', formData)
-      // show both toast and inline response message
-      toast.success(response.data.message)
-      setResponseMessage(response.data.message || 'Message sent successfully!')
+      // show both toast and inline response message (use fallback text)
+      // use the exact message requested: "message sent successfully"
+      const msg = response.data?.message || 'message sent successfully'
+      toast.success(msg)
+      setResponseType('success')
+      setResponseMessage(msg)
       setFormData({
         name: '',
         email: '',
@@ -37,8 +58,18 @@ const ContactForm = () => {
         message: ''
       })
     } catch (error) {
-      const errorMessage = error.response?.data?.error || 'Failed to send message'
+      // gather useful error info for debugging and user feedback
+      console.error('Contact form submit error:', error)
+      const status = error.response?.status
+      // If backend returned validation errors array, join them
+      const errorsArray = error.response?.data?.errors
+      let serverMsg = error.response?.data?.message || error.response?.data?.error
+      if (Array.isArray(errorsArray) && errorsArray.length) {
+        serverMsg = errorsArray.map(e => e.msg || e.message).join('; ')
+      }
+      const errorMessage = serverMsg || (status ? `Failed to send message (status ${status})` : 'Failed to send message')
       toast.error(errorMessage)
+      setResponseType('error')
       setResponseMessage(errorMessage)
     } finally {
       setIsSubmitting(false)
@@ -103,7 +134,7 @@ const ContactForm = () => {
       </form>
       <p
         id="response-message"
-        style={{ color: responseMessage ? 'green' : 'transparent', fontWeight: 'bold', textAlign: 'center', marginTop: '1rem' }}
+        style={{ color: responseType === 'success' ? 'green' : responseType === 'error' ? 'red' : 'transparent', fontWeight: 'bold', textAlign: 'center', marginTop: '1rem' }}
       >
         {responseMessage}
       </p>

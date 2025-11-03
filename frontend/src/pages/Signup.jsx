@@ -49,10 +49,11 @@ const Signup = () => {
       const { confirmPassword, ...submitData } = formData
       await axios.post('/api/auth/register', submitData)
 
-      toast.success('Registration successful! Redirecting to login...')
+      // show a clear success message and redirect to login
+      toast.success('Signup completed successfully! Redirecting to login...')
       setTimeout(() => {
         navigate('/login')
-      }, 1500)
+      }, 1200)
     } catch (error) {
       const errorMessage = error.response?.data?.error ||
         error.response?.data?.errors?.[0]?.msg ||

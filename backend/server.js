@@ -3,6 +3,8 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 const helmet = require('helmet');
 const morgan = require('morgan');
+// load environment variables from backend/.env when running server.js
+require('dotenv').config();
 
 const authRoutes = require('./src/routes/auth');
 const contactRoutes = require('./src/routes/contact');
@@ -10,6 +12,10 @@ const bookingRoutes = require('./src/routes/booking');
 
 const app = express();
 const PORT = process.env.PORT || 10000;
+
+if (!process.env.JWT_SECRET) {
+  console.warn('⚠️  JWT_SECRET is not set in environment variables. JWT operations may fail.');
+}
 
 // MongoDB Connection with direct credentials
 const MONGODB_URI = 'mongodb+srv://revathinelakurthi:revathi19@wedding-plan.y64yexh.mongodb.net/wedding-planner?retryWrites=true&w=majority';

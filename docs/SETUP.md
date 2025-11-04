@@ -51,8 +51,8 @@
 
 ### Access Points
 
-- **Frontend**: http://localhost:5173
-- **Backend API**: https://wedding-plan-backend-aws0.onrender.com
+- **Frontend**:https://wedding-plan-frontend.onrender.com
+- **Backend API**:https://wedding-plan-backend-aws0.onrender.com
 - **API Health**:https://wedding-plan-backend-aws0.onrender.com/api/health
 
 ## 📁 Project Structure

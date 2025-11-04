@@ -261,7 +261,7 @@ const Checkout = () => {
 
     try {
       // Update booking with payment details
-      const response = await axios.put(`/api/bookings/${currentBookingId}/complete`, paymentData)
+      const response = await axios.put(`https://wedding-plan-backend-aws0.onrender.com/api/bookings/${currentBookingId}/complete`, paymentData)
 
       if (response.data && response.data.booking) {
         // Combine the response data with temporary IDs if they're not provided by the backend

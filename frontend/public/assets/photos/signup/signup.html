@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Sign Up Page</title>
+    <link rel="stylesheet" href="signup.css">
+    <script>
+        // Function to validate password and confirm password
+        function validatePassword() {
+            var password = document.getElementsByName("password")[0].value;
+            var confirmPassword = document.getElementsByName("confirm_password")[0].value;
+            var errorMessage = document.getElementById("error-message");
+
+            // Check if both passwords are the same
+            if (password !== confirmPassword) {
+                errorMessage.textContent = "Passwords do not match! Please try again.";
+                return false; // Prevent form submission
+            } else {
+                errorMessage.textContent = ""; // Clear the error message
+                return true; // Allow form submission
+            }
+        }
+    </script>
+</head>
+<body>
+    <div class="signup-container">
+        <div class="signup-box">
+            <h2>Sign Up</h2>
+            <form action="../index.html" method="POST" onsubmit="return validatePassword()">
+                <div class="textbox">
+                    <input type="text" placeholder="Full Name" name="fullname" required>
+                </div>
+                <div class="textbox">
+                    <input type="email" placeholder="Email" name="email" required>
+                </div>
+                <div class="textbox">
+                    <input type="text" placeholder="Username" name="username" required>
+                </div>
+                <div class="textbox">
+                    <input type="password" placeholder="Password" name="password" required>
+                </div>
+                <div class="textbox">
+                    <input type="password" placeholder="Confirm Password" name="confirm_password" required>
+                </div>
+                <p id="error-message" style="color: red;"></p>
+                <input type="submit" class="btn" value="Sign Up">
+                <div>
+                    Already have an Account? <a href="../login/login.html">Login Here</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

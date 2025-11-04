@@ -33,7 +33,7 @@ const Login = () => {
     setIsSubmitting(true)
 
     try {
-      const response = await axios.post('/api/auth/login', formData)
+      const response = await axios.post('https://wedding-plan-backend-aws0.onrender.com/api/auth/login', formData)
       const { token, user } = response.data
 
       login(token, user)

@@ -32,7 +32,7 @@
    
    **Frontend (.env in frontend folder):**
    ```env
-   VITE_API_URL=http://localhost:3000
+   VITE_API_URL=https://wedding-plan-backend-aws0.onrender.com
    VITE_APP_NAME=Wedding Planner
    VITE_APP_VERSION=1.0.0
    ```
@@ -52,8 +52,8 @@
 ### Access Points
 
 - **Frontend**: http://localhost:5173
-- **Backend API**: http://localhost:3000
-- **API Health**: http://localhost:3000/api/health
+- **Backend API**: https://wedding-plan-backend-aws0.onrender.com
+- **API Health**:https://wedding-plan-backend-aws0.onrender.com/api/health
 
 ## 📁 Project Structure
 

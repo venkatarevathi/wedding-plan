@@ -63,10 +63,45 @@ connectDB();
 
 // Middleware
 app.use(helmet());
-app.use(cors({
-  origin: ['http://localhost:5173', 'http://localhost:3000', 'http://127.0.0.1:5173', 'https://*.onrender.com', 'https://wedding-planner-1-pgon.onrender.com'],
-  credentials: true
-}));
+
+// Configure CORS to allow local dev and frontend deployment origins, including Render subdomains.
+const allowedOrigins = [
+  'http://localhost:5173',
+  'http://localhost:3000',
+  'http://127.0.0.1:5173',
+  'https://wedding-plan-frontend.onrender.com',
+  'https://wedding-planner-1-pgon.onrender.com'
+];
+
+const corsOptions = {
+  origin: (origin, callback) => {
+    // Allow requests with no origin (like mobile apps or curl)
+    if (!origin) return callback(null, true);
+
+    // Allow exact matches
+    if (allowedOrigins.indexOf(origin) !== -1) {
+      return callback(null, true);
+    }
+
+    // Allow any subdomain of onrender.com (e.g. https://something.onrender.com)
+    try {
+      const url = new URL(origin);
+      if (/\.onrender\.com$/.test(url.hostname)) {
+        return callback(null, true);
+      }
+    } catch (e) {
+      // ignore malformed origin
+    }
+
+    // Not allowed
+    return callback(new Error('CORS policy: This origin is not allowed'), false);
+  },
+  credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization']
+};
+
+app.use(cors(corsOptions));
 app.use(morgan('combined'));
 app.use(express.json({ limit: '10mb' }));
 app.use(express.urlencoded({ extended: true, limit: '10mb' }));

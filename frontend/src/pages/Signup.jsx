@@ -47,7 +47,7 @@ const Signup = () => {
 
     try {
       const { confirmPassword, ...submitData } = formData
-      await axios.post('/api/auth/register', submitData)
+      await axios.post('https://wedding-plan-backend-aws0.onrender.com/api/auth/register', submitData)
 
       // show a clear success message and redirect to login
       toast.success('Signup completed successfully! Redirecting to login...')

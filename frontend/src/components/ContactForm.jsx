@@ -43,7 +43,7 @@ const ContactForm = () => {
     }
 
     try {
-      const response = await axios.post('/api/contact', formData)
+      const response = await axios.post('https://wedding-plan-backend-aws0.onrender.com/api/contact', formData)
       // show both toast and inline response message (use fallback text)
       // use the exact message requested: "message sent successfully"
       const msg = response.data?.message || 'message sent successfully'

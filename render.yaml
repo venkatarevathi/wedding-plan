@@ -3,7 +3,7 @@ services:
     name: wedding-planner-backend
     env: node
     plan: free
-    repo: https://github.com/venkatarevathi/wedding-planner.git
+    repo: https://github.com/venkatarevathi/wedding-plan.git
     branch: main
     buildCommand: cd backend && npm ci
     startCommand: cd backend && npm start

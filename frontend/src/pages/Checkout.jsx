@@ -121,7 +121,7 @@ const Checkout = () => {
     setIsSubmitting(true)
 
     try {
-      const response = await axios.post('/api/bookings', bookingData)
+      const response = await axios.post('https://wedding-plan-backend-aws0.onrender.com/api/bookings', bookingData)
 
       if (response.data && response.data.booking && response.data.booking._id) {
         setCurrentBookingId(response.data.booking._id)

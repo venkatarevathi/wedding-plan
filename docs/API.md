@@ -2,7 +2,7 @@
 
 ## Base URL
 ```
-http://localhost:3000/api
+https://wedding-plan-backend-aws0.onrender.com/api
 ```
 
 ## Authentication
